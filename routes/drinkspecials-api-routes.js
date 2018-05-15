@@ -1,16 +1,28 @@
 var db = require("../models");
 const Op = db.Sequelize.Op;
 
+function dowFunction() {
+    var d = new Date();
+    var weekday = new Array(7);
+    weekday = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
+    var n = weekday[d.getDay()];
+    return n;
+};
+
 module.exports = function (app) {
+
+    var dow = dowFunction();
 
     // initial read of Drink special
 
     app.get("/api/DrinkSpecials", function (req, res) {
         db.DrinkSpecials.findAll({
-        })
-            .then(function (dbDrinkSpecials) {
-                res.json(dbDrinkSpecials);
-            });
+            where: {
+                [Op.or]: [{ daily: true }, { [dow]: true }]
+            }
+        }).then(function (dbDrinkSpecials) {
+            res.json(dbDrinkSpecials);
+        });
     });
 
     // initial read of Drink special for one location
@@ -18,6 +30,7 @@ module.exports = function (app) {
     app.get("/api/DrinkSpecials/:place_id", function (req, res) {
         db.DrinkSpecials.findAll({
             where: {
+                [Op.or]: [{ daily: true }, { [dow]: true }],
                 place_id: req.params.place_id
             }
         }).then(function (dbDrinkSpecials) {
@@ -38,7 +51,7 @@ module.exports = function (app) {
     app.delete("/api/DrinkSpecials/:id", function (req, res) {
         db.dbDrinkSpecials.destroy({
             where: {
-                id: req.params.id
+                place_id: req.params.place_id
             }
         }).then(function (dbDrinkSpecials) {
             res.json(dbDrinkSpecials);

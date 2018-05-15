@@ -17,6 +17,14 @@ module.exports = function (sequelize, DataTypes) {
         price: {
             type: DataTypes.DECIMAL(10,2)
         },
+        allDay: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+        breakfast: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
         lunch: {
             type: DataTypes.BOOLEAN,
             defaultValue: false

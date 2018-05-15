@@ -1,23 +1,37 @@
 var db = require("../models");
 const Op = db.Sequelize.Op;
 
+function dowFunction() {
+    var d = new Date();
+    var weekday = new Array(7);
+    weekday = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
+    var n = weekday[d.getDay()];
+    return n;
+};
+
 module.exports = function (app) {
+
+    var dow = dowFunction();
 
     // initial read of food special
 
     app.get("/api/FoodSpecials", function (req, res) {
         db.FoodSpecials.findAll({
-        })
-            .then(function (dbFoodSpecials) {
-                res.json(dbFoodSpecials);
-            });
+            where: {
+                [Op.or]: [{ allDay: true }, { [dow]: true }]
+            }
+        }).then(function (dbFoodSpecials) {
+            res.json(dbFoodSpecials);
+        });
     });
 
-    // initial read of food special for one location
+
+    // initial read of food specials for one location
 
     app.get("/api/FoodSpecials/:place_id", function (req, res) {
         db.FoodSpecials.findAll({
             where: {
+                [Op.or]: [{ allDay: true }, { [dow]: true }],
                 place_id: req.params.place_id
             }
         }).then(function (dbFoodSpecials) {
@@ -38,7 +52,7 @@ module.exports = function (app) {
     app.delete("/api/FoodSpecials/:id", function (req, res) {
         db.dbFoodSpecials.destroy({
             where: {
-                id: req.params.id
+                place_id: req.params.place_id
             }
         }).then(function (dbFoodSpecials) {
             res.json(dbFoodSpecials);
