@@ -46,6 +46,9 @@ var models = require("./app/models");
  
 var authRoute = require('./app/routes/auth.js')(app,passport);
 
+require("./app/routes/locationId-api-routes.js")(app);
+require("./app/routes/drinkspecials-api-routes.js")(app);
+require("./app/routes/foodspecials-api-routes.js")(app);
  
  
 //load passport strategies
