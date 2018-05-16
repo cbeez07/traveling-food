@@ -28,7 +28,8 @@ module.exports = function (app) {
     // add new food special
 
     app.post("/api/FoodSpecials", function (req, res) {
-        db.dbFoodSpecial.create(req.body).then(function (dbFoodSpecials) {
+        console.log('one', req.body);
+        db.FoodSpecials.create(req.body).then(function (dbFoodSpecials) {
             res.json(dbFoodSpecials);
         });
     });

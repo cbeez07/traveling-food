@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js" integrity="sha384-u/bQvRA/1bobcXlcEYpsEdFVK/vJs3+T+nXLsBYJthmdBuavHvAW6UsmqO2Gd/F9" crossorigin="anonymous"></script>
     <script src="/assets/js/dashboard.js"></script>
 
-    <title>Passport with Sequelize</title>
+    <title>Restaurant Manager</title>
 </head>
  
 <body>
@@ -21,71 +22,56 @@
     </div>
 
     <form class="container">
-        <h3>Daily Specials</h3>
+        <h3>Add Food Specials:</h3>
         <div class="form-group">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="monday" value="monday">
-                <label class="form-check-label" for="inlineCheckbox1">Monday</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="tuesday" value="tuesday">
-                <label class="form-check-label" for="inlineCheckbox2">Tuesday</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="wednesday" value="wednesday">
-                <label class="form-check-label" for="inlineCheckbox3">Wednesday</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="thursday" value="thursday">
-                <label class="form-check-label" for="inlineCheckbox2">Thursday</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="friday" value="friday">
-                <label class="form-check-label" for="inlineCheckbox2">Friday</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="saturday" value="saturday">
-                <label class="form-check-label" for="inlineCheckbox2">Saturday</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="sunday" value="sunday">
-                <label class="form-check-label" for="inlineCheckbox2">Sunday</label>
-            </div>
+            <select class="custom-select custom-select-lg mb-3" id="dayOfTheWeek" multiple>
+                <option selected>Pick the Days of the Week(use cmd or ctrl to select more than one)</option>
+                <option value="1" id="sunday">Sunday</option>
+                <option value="2" id="monday">Monday</option>
+                <option value="3" id="tuesday">Tuesday</option>
+                <option value="4" id="wednesday">Wednesday</option>
+                <option value="5" id="thursday">Thursday</option>
+                <option value="6" id="friday">Friday</option>
+                <option value="7" id="saturday">Saturday</option>
+            </select>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-default">Food Special:</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <input type="text" class="form-control" id="foodSpecial" aria-label="Default" aria-describedby="inputGroup-sizing-default">
             </div> 
-                        <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Price</span>
-                    <span class="input-group-text">$</span>                    
-                </div>
-                <input type="number" placeholder="0.00" pattern="^\d+(?:\.\d{1,2})?$" name="price" min="1" step="any" class="form-control" >
-                </div>
-            </div>
-
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Side Special:</span>
-                </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-            </div>
-                        <div class="input-group mb-3">
-                <div class="input-group-prepend">
                     <span class="input-group-text">Price</span>
                     <span class="input-group-text">$</span>                    
                 </div>
-                <input type="number" placeholder="0.00" pattern="^\d+(?:\.\d{1,2})?$" name="price" min="1" step="any" class="form-control" >
+                <input type="number" placeholder="0.00" pattern="^\d+(?:\.\d{1,2})?$" name="price" min="1" step="any" class="form-control" id="foodSpecialPrice">
                 </div>
             </div>
+            
+        </div>
+        <button type="submit" class="btn btn-primary" id="submitFoodSpecials">Submit</button>
+    </form>
+    <hr>
+        <form class="container">
+        <h3>Add Drink Specials:</h3>
+        <div class="form-group">
+            <select class="custom-select custom-select-lg mb-3" multiple>
+                <option selected>Pick the Days of the Week(use cmd or ctrl to select more than one)</option>
+                <option value="1">Sunday</option>
+                <option value="1">Monday</option>
+                <option value="1">Tuesday</option>
+                <option value="1">Wednesday</option>
+                <option value="1">Thursday</option>
+                <option value="1">Friday</option>
+                <option value="1">Saturday</option>
+            </select>
             
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-default">Drink Special:</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <input type="text" class="form-control" id="drinkSpecial" aria-label="Default" aria-describedby="inputGroup-sizing-default">
             </div>            
            
             <div class="input-group mb-3">
@@ -93,44 +79,53 @@
                     <span class="input-group-text">Price</span>
                     <span class="input-group-text">$</span>                    
                 </div>
-                <input type="number" placeholder="0.00" pattern="^\d+(?:\.\d{1,2})?$" name="price" min="1" step="any" class="form-control" >
+                <input type="number" placeholder="0.00" pattern="^\d+(?:\.\d{1,2})?$" name="price" min="1" step="any" class="form-control" id="drinkSpecialPrice">
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary" id="dailySpecials">Submit</button>
+        <button type="submit" class="btn btn-primary" id="submitDrinkSpecials">Submit</button>
     </form>
     <hr>
 
     <div class="container">
-        <h3>Restaurant Specials:</h3>
+        <h3>Restaurant Food Specials:</h3>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Special</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Sunday</th>
+                    <th scope="col">Monday</th>
+                    <th scope="col">Tuesday</th>
+                    <th scope="col">Wednesday</th>
+                    <th scope="col">Thursday</th>
+                    <th scope="col">Friday</th>
+                    <th scope="col">Saturday</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="foodSpecialTable">
+
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <h3>Restaurant Drink Specials:</h3>
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th scope="col">Special</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Sunday</th>
+                    <th scope="col">Monday</th>
+                    <th scope="col">Tuesday</th>
+                    <th scope="col">Wednesday</th>
+                    <th scope="col">Thursday</th>
+                    <th scope="col">Friday</th>
+                    <th scope="col">Saturday</th>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+            </thead>
+            <tbody class="drinkSpecialTable">
+
             </tbody>
         </table>
     </div>
