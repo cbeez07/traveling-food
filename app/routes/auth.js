@@ -24,7 +24,6 @@ module.exports = function(app, passport) {
     app.get('/user', authController.user);
  
  
- 
     app.get('/logout', authController.logout);
  
  
