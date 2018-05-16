@@ -42,7 +42,8 @@ module.exports = function (app) {
     // add new food special
 
     app.post("/api/FoodSpecials", function (req, res) {
-        db.dbFoodSpecial.create(req.body).then(function (dbFoodSpecials) {
+        console.log('one', req.body);
+        db.FoodSpecials.create(req.body).then(function (dbFoodSpecials) {
             res.json(dbFoodSpecials);
         });
     });
@@ -50,7 +51,7 @@ module.exports = function (app) {
     // delete food special
 
     app.delete("/api/FoodSpecials/:id", function (req, res) {
-        db.dbFoodSpecials.destroy({
+        db.FoodSpecials.destroy({
             where: {
                 place_id: req.params.place_id
             }

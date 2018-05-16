@@ -41,7 +41,7 @@ module.exports = function (app) {
     // add new Drink special
 
     app.post("/api/DrinkSpecials", function (req, res) {
-        db.dbDrinkSpecial.create(req.body).then(function (dbDrinkSpecials) {
+        db.DrinkSpecials.create(req.body).then(function (dbDrinkSpecials) {
             res.json(dbDrinkSpecials);
         });
     });
@@ -49,7 +49,7 @@ module.exports = function (app) {
     // delete Drink special
 
     app.delete("/api/DrinkSpecials/:id", function (req, res) {
-        db.dbDrinkSpecials.destroy({
+        db.DrinkSpecials.destroy({
             where: {
                 place_id: req.params.place_id
             }

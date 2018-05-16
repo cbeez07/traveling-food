@@ -22,6 +22,8 @@ app.use(session({
 })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
+
+app.use(express.static('./app/public'));
  
  
 //For Handlebars
@@ -35,7 +37,7 @@ app.set('view engine', '.hbs');
  
 app.get('/', function(req, res) {
  
-    res.send('Welcome to Passport with Sequelize');
+    res.render('./signin.hbs');
  
 });
  
@@ -46,7 +48,10 @@ var models = require("./app/models");
  
 var authRoute = require('./app/routes/auth.js')(app,passport);
 
- 
+require("./app/routes/locationId-api-routes.js")(app);
+require("./app/routes/drinkspecials-api-routes.js")(app);
+require("./app/routes/foodspecials-api-routes.js")(app);
+require("./app/routes/ownerId-api-routes.js")(app);
  
 //load passport strategies
  
