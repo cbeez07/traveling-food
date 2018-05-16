@@ -30,13 +30,13 @@
  
     "production": {
  
-        "username": "",
+        "username": "jg01alzf9bal90u0",
  
-        "password": null,
+        "password": "nz5ibil38adfdw07",
  
-        "database": "",
+        "database": "jw88y8dt3mgva9n7",
  
-        "host": "127.0.0.1",
+        "host": "ou6zjjcqbi307lip.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
  
         "dialect": "mysql"
  
