@@ -37,7 +37,7 @@ module.exports = function (app) {
     // delete food special
 
     app.delete("/api/FoodSpecials/:id", function (req, res) {
-        db.dbFoodSpecials.destroy({
+        db.FoodSpecials.destroy({
             where: {
                 id: req.params.id
             }
