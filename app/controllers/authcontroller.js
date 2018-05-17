@@ -1,4 +1,5 @@
 var exports = module.exports = {};
+var db = require('../models');
  
 exports.signup = function(req, res) {
  
@@ -13,8 +14,13 @@ exports.signin = function(req, res) {
 }
 
 exports.dashboard = function(req, res) {
- 
-    res.render('dashboard');
+    console.log('user', req.user);
+    
+    db.OwnerId.findAll({
+    })
+        .then(function (OwnerId) {
+            res.render('dashboard', {OwnerId: OwnerId})
+    });
  
 }
 

@@ -5,17 +5,17 @@ module.exports = function(app) {
 // initial read of owner table/user check
 
   app.get("/api/OwnerIds", function(req, res) {
-    db.OwnerId.findAll({
-      include: [db.LocationId]
-    }).then(function(dbOwnerId) {
-      res.json(dbOwnerId);
+    db.LocationId.findAll({
+      include: [db.OwnerId]
+    }).then(function(LocationId) {
+      res.json(LocationId);
     });
   });
 
 // add new owner/user
 
   app.post("/api/OwnerIds", function(req, res) {
-    db.OwnerId.create(req.body).then(function(dbOwnerId) {
+    db.OwnerIds.create(req.body).then(function(dbOwnerId) {
       res.json(dbOwnerId);
     });
   });
