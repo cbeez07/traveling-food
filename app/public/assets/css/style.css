@@ -1,0 +1,74 @@
+.Sign-in {
+    width: 70%;
+    margin: auto;
+}
+.Login-div {
+    margin: auto;
+    width: 400px;
+    height: 420px;
+    border-width: 2px;
+    border-color: black;
+    border-style: inset;
+    border-radius: 10px;
+    background: rgba(255,250,240);
+}
+/* #submit-btn {
+    float: right;
+} */
+#manSignIn{
+    background: rgba(204, 204, 204, 0.1);
+    height: 180px;
+}
+.avatar {
+    border-radius: 10px;
+    margin-left: 90px;
+}
+#userClick-3 {
+    width: 75px;
+    float: right;
+    margin-top: -10px;
+    margin-right: 34px;
+}
+.userClick {
+    margin: auto;
+    width: 150px;
+    margin-top: 10px;
+}
+.userClick-2 {
+    float: left;
+    margin: auto;
+    width: 160px;
+    margin-top: 10px;
+}
+.Sign-Up {
+    line-height: 12px;
+    width: 70%;
+    margin: auto;
+}
+.Email{
+    margin-top: 40px;
+}
+/* body {
+    color: black;
+    background-image: url("../images/rest-backg-3.jpeg");
+    width: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
+body, html {
+    height: 100%;
+    width: 100%;
+}
+.container {
+    width: 50%;
+}
+#table {
+    width: 75%
+}
+#header {
+        background-image: url("../images/wood-grain.jpeg"); 
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+}
