@@ -29,6 +29,8 @@ module.exports = function (app) {
     // initial read of food specials for one location
 
     app.get("/api/FoodSpecials/:place_id", function (req, res) {
+        console.log("place_id", req.params.place_id);
+        
         db.FoodSpecials.findAll({
             where: {
                 [Op.or]: [{ allDay: true }, { [dow]: true }],
@@ -42,7 +44,7 @@ module.exports = function (app) {
     // add new food special
 
     app.post("/api/FoodSpecials", function (req, res) {
-        console.log('one', req.body);
+        console.log('foodPost', req.body);
         db.FoodSpecials.create(req.body).then(function (dbFoodSpecials) {
             res.json(dbFoodSpecials);
         });

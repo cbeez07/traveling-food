@@ -41,7 +41,7 @@ module.exports = function (app) {
   // add new location
 
   app.post("/api/LocationIds", function (req, res) {
-    db.dbLocationId.create(req.body).then(function (dbLocationId) {
+    db.LocationId.create(req.body).then(function (dbLocationId) {
       res.json(dbLocationId);
     });
   });

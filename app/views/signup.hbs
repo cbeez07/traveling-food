@@ -24,24 +24,45 @@
 
     <div class="Login-div">
         <div class="Sign-Up">
-            <form id="signup" name="signup" method="post" action="/signup">
-                <label class="Email" for="email">Email Address:</label>
+            <form class="needs-validation" id="signup" name="signup" method="post" action="/signup" novalidate>
+                <label class="Email" for="validationCustom01">Email Address:</label>
+                <input class="text form-control" name="email" type="email" id="validationCustom01" placeholder="Email" required/>
+                <div class="invalid-feedback">
+                    Please provide an Email.
+                </div>
                 <br>
-                <input class="text form-control" name="email" type="email" placeholder="Email" />
+                <label for="validationCustom02">First Name:</label>
+                <input class="text form-control" name="firstname" type="text" id="validationCustom02" placeholder="First Name" required/>
+                <div class="invalid-feedback">
+                    Please provide a name.
+                </div>
                 <br>
-                <label for="firstname">First Name:</label>
+                <label for="validationCustom03">Last Name:</label>
+                <input class="text form-control" name="lastname" type="text" id="validationCustom03" placeholder="Last Name" required/>
+                <div class="invalid-feedback">
+                    Please provide a name.
+                </div>
                 <br>
-                <input class="text form-control" name="firstname" type="text" placeholder="First Name" />
+                <label for="validationCustom04">Username:</label>
+                <input class="text form-control" name="username" type="text" id="validationCustom04" placeholder="Username" required/>
+                <div class="invalid-feedback">
+                    Please provide an username.
+                </div>
                 <br>
-                <label for="lastname">Last Name:</label>
+                <label for="validationCustom06">Restaurant Name:</label>
+                <input class="text form-control" name="restaurantName" type="text" id="validationCustom06" placeholder="Restaurant Name" required/>
+                <div class="invalid-feedback">
+                    Please provide a Restaurant Name.
+                </div>
+
                 <br>
-                <input class="text form-control" name="lastname" type="text" placeholder="Last Name" />
+                <label for="validationCustom05">Password:</label>
+                <input class="text form-control" name="password" type="password" id="validationCustom05" placeholder="Password" required/>
+                <div class="invalid-feedback">
+                    Please provide a password.
+                </div>
                 <br>
-                <label for="password">Password:</label>
-                <br>
-                <input class="text form-control" name="password" type="password" placeholder="Password" />
-                <br>
-                <input class="btn btn-primary" id="submit-btn-2" type="submit" value="Sign Up" />
+                <input class="btn btn-primary signupSubmit" id="submit-btn-2" type="submit" value="Sign Up" />
 
             </form>
         
@@ -52,20 +73,7 @@
         </div>
     </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(
-            $('#userClick-3').on('click', function () {
-                console.log('hello');
-                window.location.href = '/user';
-                return false;
-
-            }),
-            $('#signIn').on('click', function() {
-                window.location.href = '/signin';
-                return false;
-            })
-        );
-    </script>
+    <script src="/assets/js/signup.js"></script>
 
 </body>
 

@@ -14,7 +14,6 @@ exports.signin = function(req, res) {
 }
 
 exports.dashboard = function(req, res) {
-    console.log('user', req.user);
     
     db.OwnerId.findAll({
     })

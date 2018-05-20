@@ -15,7 +15,7 @@ module.exports = function(app) {
 // add new owner/user
 
   app.post("/api/OwnerIds", function(req, res) {
-    db.OwnerIds.create(req.body).then(function(dbOwnerId) {
+    db.OwnerId.create(req.body).then(function(dbOwnerId) {
       res.json(dbOwnerId);
     });
   });

@@ -8,14 +8,6 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
-        secondaryId: {
-            type: DataTypes.STRING,
-            primaryKey: true,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -25,14 +17,6 @@ module.exports = function (sequelize, DataTypes) {
         },
         phone: {
             type: DataTypes.SMALLINT
-        },
-        creditCard: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            allowNull: false,
-            validate: {
-                isCreditCard: true 
-            }
         }
     });
 

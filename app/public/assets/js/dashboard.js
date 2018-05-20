@@ -1,9 +1,3 @@
-// 
-// connect the form to the food and drink specials. *
-// add the values of the form to the database. *
-// fill in the table information with info from the database.*
-// delete from the table.
-// edit from the table.
 
 $(document).ready(function() {
     let inputFood = $('#foodSpecial');
@@ -12,11 +6,14 @@ $(document).ready(function() {
     let inputDrinkPrice = $('#drinkSpecialPrice');
     let foodList = $('.foodSpecialTable');
     let drinkList = $('.drinkSpecialTable');
+    var username;
+    var restaurantId;
 
 
-    getFoodSpecials();
-    getDrinkSpecials();
-    getRestaurantInfo();
+    // getFoodSpecials();
+    // getDrinkSpecials();
+    // getRestaurantInfo();
+    getUserInfo();
 
     $(document).on("click", ".delete-food", foodDeleteButtonPress);
 
@@ -34,6 +31,7 @@ $(document).ready(function() {
         }
         
         foodPost({
+            place_id: username,
             special: inputFood
                 .val()
                 .trim(),
@@ -47,10 +45,10 @@ $(document).ready(function() {
             thursday: (value.indexOf('5') > -1 ? true : false),
             friday: (value.indexOf('6') > -1 ? true : false),
             saturday: (value.indexOf('7') > -1 ? true : false),
-            place_id: 'ChIJMSTFK6mUwIcRrAwlZ5NXl7B',
-            LocationIdPlaceId: 'ChIJMSTFK6mUwIcRrAwlZ5NXl7B'
+            LocationIdPlaceId: username
         });
-        
+        inputFood.val('');
+        inputFoodPrice.val('');
 
     });
 
@@ -77,39 +75,48 @@ $(document).ready(function() {
             thursday: (value.indexOf('5') > -1 ? true : false),
             friday: (value.indexOf('6') > -1 ? true : false),
             saturday: (value.indexOf('7') > -1 ? true : false),
-            place_id: 'ChIJMSTFK6mUwIcRrAwlZ5NXl7B',
-            LocationIdPlaceId: 'ChIJMSTFK6mUwIcRrAwlZ5NXl7B'
+            LocationIdPlaceId: username
         });
     });
 
     function appendRestaurantManager(restaurant) {
-        $('#pageTitle').text(restaurant[0].location_name + ' Restaurant Manager');
+        $('#pageTitle').text(restaurant + ' Restaurant Manager');
     }    
 
-    function getRestaurantInfo() {
-        $.get('/api/OwnerIds', function(data) {
-            console.log('restaurant', data);
-            let restaurant = data.filter(val => {
-                return val.OwnerId != null;
-            });
-            console.log('one', restaurant);
-            appendRestaurantManager(restaurant);
+    // function getRestaurantInfo() {
+    //     $.get('/api/OwnerIds', function(data) {
+    //         console.log('restaurant', data);
+    //         let restaurant = data.filter(val => {
+    //             return val.OwnerId != null;
+    //         });
+    //         console.log('one', restaurant);
+    //         appendRestaurantManager(restaurant);
+    //     })
+    // }
+
+    function getUserInfo() {
+        $.get('api/users', function(data) {
+            console.log('users', data);
+            username = data.username;
+            restaurantId = data.about;
+            getFoodSpecials(username);
+            getDrinkSpecials(username);
+            appendRestaurantManager(restaurantId)
         })
     }
-
-
+    
     function foodPost(foodData) {
         console.log('foodData', foodData);
         
         $.post("/api/FoodSpecials", foodData)
-            .then(getFoodSpecials);
+            .then(getFoodSpecials(username));
     }
 
     function drinkPost(drinkData) {
         console.log('drinkData', drinkData);
         
         $.post("/api/DrinkSpecials", drinkData)
-            .then(getDrinkSpecials);
+            .then(getDrinkSpecials(username));
     }
 
 
@@ -133,9 +140,11 @@ $(document).ready(function() {
 
 
     // Function for retrieving food and getting them ready to be rendered to the page
-    function getFoodSpecials() {
-        $.get("/api/FoodSpecials", function (data) {
-            console.log(data);
+    function getFoodSpecials(username) {
+        console.log('username', username);
+        
+        $.get("/api/FoodSpecials/" + username, function (data) {
+            console.log('food', data);
 
             
             var rowsToAdd = [];
@@ -152,9 +161,6 @@ $(document).ready(function() {
         if (rows.length) {
             console.log('rows', rows);
             foodList.prepend(rows);
-        }
-        else {
-            renderEmpty();
         }
     };
     function createDrinkRow(drinkData) {
@@ -175,8 +181,8 @@ $(document).ready(function() {
     }
 
     // Function for retrieving drink and getting them ready to be rendered to the page
-    function getDrinkSpecials() {
-        $.get("/api/DrinkSpecials", function (data) {
+    function getDrinkSpecials(username) {
+        $.get("/api/DrinkSpecials/" + username, function (data) {
             console.log(data);
 
             
@@ -194,10 +200,7 @@ $(document).ready(function() {
         if (rows.length) {
             console.log('rows', rows);
             drinkList.prepend(rows);
-        }
-        else {
-            renderEmpty();
-        }
+        };
     }
     function foodDeleteButtonPress() {
         var listItemData = $(this).parent("td").parent("tr").data("foodSpecial");
@@ -206,7 +209,7 @@ $(document).ready(function() {
             method: "DELETE",
             url: "/api/FoodSpecials/" + id
         })
-            .then(getFoodSpecials);
+            .then(getFoodSpecials(username));
     };
 
     function drinkDeleteButtonPress() {
