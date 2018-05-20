@@ -1,5 +1,5 @@
 var authController = require('../controllers/authcontroller.js');
- 
+var db = require('../models');
  
 module.exports = function(app, passport) {
  
@@ -13,12 +13,22 @@ module.exports = function(app, passport) {
     app.post('/signup', passport.authenticate('local-signup', {
             successRedirect: '/dashboard',
  
-            failureRedirect: '/signup'
+            failureRedirect: '/dashboard'
         }
  
     ));
- 
- 
+
+    app.get('/api/users', function(req, res){
+        if(req.isAuthenticated()) {
+            db.user.find({where: {
+                id: req.user.id
+            }
+            }).then(function (dbUser) {
+            res.json(dbUser);
+            });
+        }
+    });
+
     app.get('/dashboard', isLoggedIn, authController.dashboard);
 
     app.get('/user', authController.user);

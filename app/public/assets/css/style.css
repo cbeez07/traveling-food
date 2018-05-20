@@ -5,12 +5,13 @@
 .Login-div {
     margin: auto;
     width: 400px;
-    height: 420px;
+    height: 650px;
     border-width: 2px;
     border-color: black;
     border-style: inset;
     border-radius: 10px;
     background: rgba(255,250,240);
+    box-sizing: border-box;
 }
 /* #submit-btn {
     float: right;
@@ -43,6 +44,7 @@
 .Sign-Up {
     line-height: 12px;
     width: 70%;
+    height: auto;
     margin: auto;
 }
 .Email{
